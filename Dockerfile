@@ -5,13 +5,7 @@ MAINTAINER Christoph Dwertmann <cdwertmann@gmail.com>
 ENV DOKUWIKI_VERSION 2015-08-10a
 
 # Update & install packages
-
-RUN apk --update add lighttpd php-cgi php-gd curl supervisor logrotate
-RUN apk --update add tzdata && \
-    cp /usr/share/zoneinfo/Australia/Sydney /etc/localtime && \
-    echo "Australia/Sydney" > /etc/timezone && \
-    apk del tzdata && \
-    rm /var/cache/apk/*
+RUN apk --update add lighttpd php-cgi php-gd curl supervisor logrotate && rm /var/cache/apk/*
 
 # Download & deploy
 RUN curl "http://download.dokuwiki.org/src/dokuwiki/dokuwiki-$DOKUWIKI_VERSION.tgz" | tar xvz && \
@@ -20,7 +14,7 @@ RUN curl "http://download.dokuwiki.org/src/dokuwiki/dokuwiki-$DOKUWIKI_VERSION.t
     rm /etc/logrotate.d/*
 
 # Configure lighttpd
-RUN echo 'include "dokuwiki.conf"' >>/etc/lighttpd/lighttpd.conf
+RUN echo 'include "dokuwiki.conf"' >> /etc/lighttpd/lighttpd.conf
 ADD dokuwiki.conf /etc/lighttpd/
 
 RUN cd /var/log/lighttpd; mkfifo access.log error.log; chown -R lighttpd. *

@@ -1,11 +1,10 @@
 DokuWiki docker container
 =========================
 
-
 To run image:
 -------------
 
-	docker run -d -p 80:80 --name my_wiki mprasil/dokuwiki 
+	docker run -d -p 80:80 --name my_wiki vault/dokuwiki
 
 You can now visit the install page to configure your new DokuWiki wiki.
 
@@ -29,7 +28,7 @@ Now you can remove old container
 
 ..and run a new one (you built, pulled before)
 
-	docker run -d -p 80:80 --name my_wiki --volumes-from my_wiki_data mprasil/dokuwiki 
+	docker run -d -p 80:80 --name my_wiki --volumes-from my_wiki_data vault/dokuwiki 
 
 afterwards you can remove data container if you want
 
