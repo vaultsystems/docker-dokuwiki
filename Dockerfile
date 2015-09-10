@@ -5,7 +5,7 @@ MAINTAINER Christoph Dwertmann <cdwertmann@gmail.com>
 ENV DOKUWIKI_VERSION 2015-08-10a
 
 # Update & install packages
-RUN apk --update add lighttpd php-zlib php-bz2 curl supervisor logrotate \
+RUN apk --update add lighttpd php-zlib php-bz2 curl \
     php-common php-iconv php-json php-gd php-curl php-xml php-imap php-cgi fcgi \
     php-soap php-xmlrpc php-posix php-mcrypt php-gettext php-ctype php-dom && \
     rm /var/cache/apk/*
